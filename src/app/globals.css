@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .linksnav {
+        @apply text-lg font-medium transition duration-300;
+    }
+}

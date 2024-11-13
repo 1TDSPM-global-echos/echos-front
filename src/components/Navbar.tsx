@@ -31,16 +31,16 @@ export default function Navbar() {
                 </button>
 
                 <div className={`md:flex space-x-8 ${isOpen ? 'block' : 'hidden'} mt-4 md:mt-0`}>
-                    <Link href="/sobre" className="text-lg font-medium transition duration-300">
+                    <Link href="/sobre" className="linksnav">
                         Sobre
                     </Link>
-                    <Link href="/projetos" className="text-lg font-medium transition duration-300">
+                    <Link href="/projetos" className="linksnav">
                         Projetos
                     </Link>
-                    <Link href="/calculadora" className="text-lg font-medium transition duration-300">
+                    <Link href="/calculadora" className="linksnav">
                         Calculadora
                     </Link>
-                    <Link href="/contato" className="text-lg font-medium transition duration-300">
+                    <Link href="/contato" className="linksnav">
                         Contato
                     </Link>
                 </div>
