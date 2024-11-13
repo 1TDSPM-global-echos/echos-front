@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Echos",
   description: "Projeto para o Global Solution",
+  icons: {
+    icon: "/logo-sem-fundo.png"
+  }
 };
 
 export default function RootLayout({
