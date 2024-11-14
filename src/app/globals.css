@@ -16,6 +16,6 @@
   }
 
   .linksnav {
-    @apply text-lg transition duration-300;
+    @apply text-lg transition duration-300 hover:text-gray-400;
   }
 }
