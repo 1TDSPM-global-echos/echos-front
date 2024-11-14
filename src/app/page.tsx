@@ -3,6 +3,7 @@
 import Carrossel from '@/components/Carrossel';
 import { cards } from '@/data/cards';
 import Destaques from '@/components/Destaques';
+import SecaoCalculadora from '@/components/SecaoCalculadora';
 
 export default function Home() {
     return (
@@ -21,7 +22,10 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
             <Destaques />
+
+            <SecaoCalculadora />
         </main>
     );
 }
