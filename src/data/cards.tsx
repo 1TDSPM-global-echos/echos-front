@@ -8,7 +8,7 @@ export const cards = [
         linkText: "Calcule seu consumo",
     },
     {
-        icon: <FaWater size={40} className="text-corPrimaria" />,
+        icon: <FaWater size={40} className="text-corTurquesa" />,
         text: "Cada pessoa utiliza em média 150 litros de água por dia. Qual o seu impacto?",
         link: "/calculadora",
         linkText: "Calcule seu uso de água",

@@ -10,10 +10,9 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     const itensMenu = [
-        { nome: "Sobre", href: "/sobre" },
-        { nome: "Projetos", href: "/projetos" },
         { nome: "Calculadora", href: "/calculadora" },
-        { nome: "Contato", href: "/contato" },
+        { nome: "Sobre o Projeto", href: "/projeto" },
+        { nome: "Quem Somos", href: "/equipe" },
     ];
 
     return (

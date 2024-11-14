@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        corPrimaria: '#00C7B1',
-        corPrimariaHover: '#33D1C4',
+        corTurquesa: '#00C7B1',
+        corTurquesaHover: '#33D1C4',
         corCinza: '#2E2E2E',
         corCinzaClaro: '#F5F5F5',
         corVerdeFolha: '#4CAF50',

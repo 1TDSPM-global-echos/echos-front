@@ -32,6 +32,6 @@
   }
 
   .nav-btn {
-    @apply text-corCinza hover:text-corPrimaria transition duration-300 bg-white p-2 rounded-full;
+    @apply text-corCinza hover:text-corVerdeFolha transition duration-300 bg-white p-2 rounded-full;
   }
 }
