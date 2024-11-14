@@ -2,6 +2,7 @@
 
 import Carrossel from '@/components/Carrossel';
 import { cards } from '@/data/cards';
+import Destaques from '@/components/Destaques';
 
 export default function Home() {
     return (
@@ -18,9 +19,9 @@ export default function Home() {
                             Explore nossos recursos e descubra como você pode fazer a diferença!
                         </p>
                     </div>
-
                 </div>
             </section>
+            <Destaques />
         </main>
     );
 }
