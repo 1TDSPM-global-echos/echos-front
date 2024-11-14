@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    font-family: var(--font-open-sans), sans-serif;
+    @apply font-light;
+  }
+}
+
 @layer components {
-    .linksnav {
-        @apply text-lg font-medium transition duration-300;
-    }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-quicksand), sans-serif;
+    @apply font-bold;
+  }
+
+  .linksnav {
+    @apply text-lg transition duration-300;
+  }
 }
