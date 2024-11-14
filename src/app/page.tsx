@@ -16,7 +16,7 @@ export default function Home() {
 
     return (
         <div className="bg-cover bg-center bg-no-repeat min-h-screen bg-[url('../assets/fundo-home.jpeg')] flex items-center justify-center">
-            <div className="mx-auto px-4 flex flex-col md:flex-row items-start gap-8 max-w-4xl">
+            <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 
                 <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center space-y-4 text-corCinza max-w-lg w-full">
                     <p className="text-lg font-semibold">{cards[cardAtual].text}</p>
