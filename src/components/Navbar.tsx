@@ -5,18 +5,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Logo from '../assets/logo-sem-fundo.png';
+import { itensMenu } from '@/data/itensMenu';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const itensMenu = [
-        { nome: "Calculadora", href: "/calculadora" },
-        { nome: "Sobre o Projeto", href: "/projeto" },
-        { nome: "Quem Somos", href: "/equipe" },
-    ];
-
     return (
-        <nav className="bg-[#00000050] text-white shadow-lg fixed top-0 left-0 w-full z-10">
+        <nav className="bg-[#00000050] text-white shadow-lg absolute top-0 left-0 w-full z-10">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 
                 <Link href="/" className="flex items-center">

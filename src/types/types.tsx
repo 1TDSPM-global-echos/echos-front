@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { ComponentType } from 'react';
 
 export interface CardProps {
-    icon: ReactNode;
+    icon: ComponentType<{ size: number }>;
     text: string;
     link: string;
     linkText: string;

@@ -1,7 +1,9 @@
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
+
 import { Quicksand, Open_Sans } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -33,6 +35,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

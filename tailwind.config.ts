@@ -15,6 +15,7 @@ const config: Config = {
         corCinzaClaro: '#F5F5F5',
         corVerdeFolha: '#4CAF50',
         corVerdeFolhaHover: '#66BB6A',
+        corAmarelo: '#EAB308',
       },
     },
   },
