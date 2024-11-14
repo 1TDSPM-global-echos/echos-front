@@ -9,6 +9,13 @@ import Logo from '../assets/logo-sem-fundo.png';
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
+    const itensMenu = [
+        { nome: "Sobre", href: "/sobre" },
+        { nome: "Projetos", href: "/projetos" },
+        { nome: "Calculadora", href: "/calculadora" },
+        { nome: "Contato", href: "/contato" },
+    ];
+
     return (
         <nav className="bg-[#00000050] text-white shadow-lg fixed top-0 left-0 w-full z-10">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -30,20 +37,12 @@ export default function Navbar() {
                     {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
                 </button>
 
-                {/* Links */}
-                <div className={`md:flex md:space-x-8 ${isOpen ? 'flex flex-col items-center bg-black bg-opacity-90 absolute top-0 left-0 h-screen w-full pt-20' : 'hidden md:block'} transition-all duration-300`}>
-                    <Link href="/sobre" className="linksnav py-2 md:py-0 hover:text-gray-400">
-                        Sobre
-                    </Link>
-                    <Link href="/projetos" className="linksnav py-2 md:py-0 hover:text-gray-400">
-                        Projetos
-                    </Link>
-                    <Link href="/calculadora" className="linksnav py-2 md:py-0 hover:text-gray-400">
-                        Calculadora
-                    </Link>
-                    <Link href="/contato" className="linksnav py-2 md:py-0 hover:text-gray-400">
-                        Contato
-                    </Link>
+                <div className={`md:flex md:space-x-10 ${isOpen ? 'flex flex-col items-center bg-black bg-opacity-90 absolute top-0 left-0 h-screen w-full pt-20 space-y-6' : 'hidden md:block'} transition-all duration-300`}>
+                    {itensMenu.map((item) => (
+                        <Link key={item.href} href={item.href} className="linksnav">
+                            {item.nome}
+                        </Link>
+                    ))}
                 </div>
             </div>
         </nav>
