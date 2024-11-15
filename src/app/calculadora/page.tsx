@@ -140,8 +140,8 @@ export default function CalculadoraPage() {
     return (
         <main>
             <section className="bg-img-calc flex items-center justify-center px-4 sm:px-8 md:px-16 pt-20">
-                <div className="w-[80%] h-80 mx-auto bg-corCinzaClaro p-10 rounded-lg text-corCinza">
-                    <div className="flex justify-between items-center mb-8 space-x-4">
+                <div className="w-full max-w-md sm:max-w-lg lg:max-w-3xl mx-auto bg-corCinzaClaro p-6 md:p-10 rounded-lg text-corCinza">
+                    <div className="flex justify-between items-center mb-8 space-x-4 overflow-x-auto">
                         {etapas.map((etapa, index) => (
                             <div
                                 key={index}
