@@ -9,6 +9,18 @@
   }
 }
 
+@layer utilities {
+  .bg-img-home {
+    background-image: url('../assets/fundo-home.jpeg');
+    @apply bg-cover bg-center bg-no-repeat min-h-screen;
+  }
+
+  .bg-img-calc {
+    background-image: url('../assets/fundo-calc.jpeg');
+    @apply bg-cover bg-center bg-no-repeat min-h-screen;
+  }
+}
+
 @layer components {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-quicksand), sans-serif;
