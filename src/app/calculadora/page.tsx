@@ -54,7 +54,7 @@ export default function CalculadoraPage() {
             case 0:
                 return (
                     <div className="text-center">
-                        <h2 className="text-2xl font-bold text-corVerdeFolha mb-6">
+                        <h2 className="text-2xl font-bold text-corTurquesa mb-6">
                             O que é pegada de carbono?
                         </h2>
                         <p className="mb-6">
@@ -62,7 +62,7 @@ export default function CalculadoraPage() {
                         </p>
                         <button
                             onClick={avancarEtapa}
-                            className="botao-principal"
+                            className="botao-secundario"
                         >
                             Iniciar Calculadora
                         </button>
@@ -127,9 +127,9 @@ export default function CalculadoraPage() {
             case 5:
                 return (
                     <div className="text-center">
-                        <h2 className="text-2xl font-bold text-corVerdeFolha mb-6">Resultado</h2>
+                        <h2 className="text-2xl font-bold text-corTurquesa mb-6">Resultado</h2>
                         <p>Sua pegada de carbono estimada é: {calcularResultado()} kg CO₂ por mês</p>
-                        <button onClick={() => setEtapaAtual(0)} className="botao-principal mt-4">Recomeçar</button>
+                        <button onClick={() => setEtapaAtual(0)} className="botao-secundario mt-4">Recomeçar</button>
                     </div>
                 );
             default:
@@ -140,18 +140,18 @@ export default function CalculadoraPage() {
     return (
         <main>
             <section className="bg-img-calc flex items-center justify-center px-4 sm:px-8 md:px-16 pt-20">
-                <div className="w-[80%] h-96 mx-auto bg-corCinzaClaro p-10 rounded-lg text-corCinza">
+                <div className="w-[80%] h-80 mx-auto bg-corCinzaClaro p-10 rounded-lg text-corCinza">
                     <div className="flex justify-between items-center mb-8 space-x-4">
                         {etapas.map((etapa, index) => (
                             <div
                                 key={index}
                                 className={`flex-1 border-t-2 ${
-                                    index <= etapaAtual ? 'border-corVerdeFolha' : 'border-gray-300'
+                                    index <= etapaAtual ? 'border-corTurquesa' : 'border-gray-300'
                                 }`}
                             >
                                 <span
                                     className={`block text-center text-sm ${
-                                        index === etapaAtual ? 'text-corVerdeFolha font-semibold' : 'text-gray-400'
+                                        index === etapaAtual ? 'text-corTurquesa font-semibold' : 'text-gray-400'
                                     }`}
                                 >
                                     {etapa}
@@ -166,7 +166,7 @@ export default function CalculadoraPage() {
                         {etapaAtual > 0 && (
                             <button
                                 onClick={voltarEtapa}
-                                className="botao-principal"
+                                className="botao-secundario"
                             >
                                 Voltar
                             </button>
@@ -174,7 +174,7 @@ export default function CalculadoraPage() {
                         {(etapaAtual < etapas.length - 1 && etapaAtual > 0) && (
                             <button
                                 onClick={avancarEtapa}
-                                className="botao-principal"
+                                className="botao-secundario"
                             >
                                 Próximo
                             </button>
