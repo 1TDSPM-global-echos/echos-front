@@ -1,5 +1,9 @@
 export default function Projeto() {
     return (
-        <main>Nosso Projeto</main>
+        <main>
+            <section className="secao-img bg-img-projeto">
+                <h1>Projeto</h1>
+            </section>
+        </main>
     )
 }

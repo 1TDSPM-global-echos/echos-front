@@ -8,7 +8,7 @@ import SecaoCalculadora from '@/components/SecaoCalculadora';
 export default function Home() {
     return (
         <main> 
-            <section className="bg-img-home flex items-center justify-center px-4 sm:px-8 md:px-16 pt-20">
+            <section className="bg-img-home secao-img">
                 <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 md:gap-32 items-center w-full max-w-screen-lg">
                     
                     <Carrossel cards={cards} quantidadePorVez={1} />

@@ -19,6 +19,16 @@
     background-image: url('../assets/fundo-calc.jpeg');
     @apply bg-cover bg-center bg-no-repeat min-h-screen;
   }
+
+  .bg-img-projeto {
+    background-image: url('../assets/fundo-projeto.jpeg');
+    @apply bg-cover bg-center bg-no-repeat min-h-screen;
+  }
+
+  .bg-img-equipe {
+    background-image: url('../assets/fundo-equipe.jpeg');
+    @apply bg-cover bg-center bg-no-repeat min-h-screen;
+  }
 }
 
 @layer components {
@@ -49,5 +59,9 @@
 
   .nav-btn {
     @apply text-corCinza hover:text-corVerdeFolha transition duration-300 bg-white p-2 rounded-full;
+  }
+
+  .secao-img {
+    @apply flex items-center justify-center px-4 sm:px-8 md:px-16 pt-20;
   }
 }
