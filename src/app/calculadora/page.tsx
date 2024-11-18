@@ -10,6 +10,7 @@ export default function CalculadoraPage() {
         transporte: 0,
         viagensAereas: 0,
     });
+    const [resultado, setResultado] = useState<string | null>(null);
 
     const etapas = [
         "Introdução",
@@ -20,7 +21,22 @@ export default function CalculadoraPage() {
         "Resultado"
     ];
 
-    const avancarEtapa = () => {
+    const avancarEtapa = async () => {
+        if (etapaAtual === etapas.length - 2) {
+            const enviar = Object.keys(dados).map((key) => ({
+                nomeCategoria: key.charAt(0).toUpperCase() + key.slice(1),
+                quantidade: dados[key as keyof typeof dados],
+            }));
+
+            const res = await fetch('http://localhost:8080/echos-java/api/resultados/calcular', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(enviar),
+            });
+
+            const data = await res.json();
+            setResultado(data.pegadaTotal);
+        }
         if (etapaAtual < etapas.length - 1) {
             setEtapaAtual(etapaAtual + 1);
         }
@@ -38,15 +54,6 @@ export default function CalculadoraPage() {
             ...prevDados,
             [name]: parseFloat(value),
         }));
-    };
-
-    const calcularResultado = () => {
-        const total =
-            dados.eletricidade +
-            dados.gas +
-            dados.transporte +
-            dados.viagensAereas;
-        return total.toFixed(2);
     };
 
     const renderEtapa = () => {
@@ -128,7 +135,7 @@ export default function CalculadoraPage() {
                 return (
                     <div className="text-center">
                         <h2 className="text-2xl font-bold text-corTurquesa mb-6">Resultado</h2>
-                        <p>Sua pegada de carbono estimada é: {calcularResultado()} kg CO₂ por mês</p>
+                        <p>Sua pegada de carbono estimada é: {resultado} kg CO₂ por mês</p>
                         <button onClick={() => setEtapaAtual(0)} className="botao-secundario mt-4">Recomeçar</button>
                     </div>
                 );
@@ -145,14 +152,12 @@ export default function CalculadoraPage() {
                         {etapas.map((etapa, index) => (
                             <div
                                 key={index}
-                                className={`flex-1 border-t-2 ${
-                                    index <= etapaAtual ? 'border-corTurquesa' : 'border-gray-300'
-                                }`}
+                                className={`flex-1 border-t-2 ${index <= etapaAtual ? 'border-corTurquesa' : 'border-gray-300'
+                                    }`}
                             >
                                 <span
-                                    className={`block text-center text-sm ${
-                                        index === etapaAtual ? 'text-corTurquesa font-semibold' : 'text-gray-400'
-                                    }`}
+                                    className={`block text-center text-sm ${index === etapaAtual ? 'text-corTurquesa font-semibold' : 'text-gray-400'
+                                        }`}
                                 >
                                     {etapa}
                                 </span>
