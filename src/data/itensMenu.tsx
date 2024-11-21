@@ -2,6 +2,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 export const itensMenu = [
     { nome: "Calculadora", href: "/calculadora" },
+    { nome: "Categorias", href: "/categorias" },
     { nome: "Sobre o Projeto", href: "/projeto" },
     { nome: "Quem Somos", href: "/equipe" },
 ];

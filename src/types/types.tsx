@@ -11,3 +11,11 @@ export interface CarouselProps {
     cards: CardProps[];
     quantidadePorVez: number;
 }
+
+export type Categoria = {
+    id: number;
+    nome: string;
+    descricao: string;
+    impactoGlobal: string;
+    dicas: string[];
+}; 

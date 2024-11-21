@@ -1,10 +1,13 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { categoriasAtividades } from '@/data/dadosLocais';
+import { Categoria } from '@/types/types';
 
 type ApiDisponivelContextType = {
     isApiOnline: boolean;
     isDbConnected: boolean;
+    categorias: Categoria[];
     setIsApiOnline: (status: boolean) => void;
     setIsDbConnected: (status: boolean) => void;
 };
@@ -12,6 +15,7 @@ type ApiDisponivelContextType = {
 const ApiDisponivelContext = createContext<ApiDisponivelContextType>({
     isApiOnline: false,
     isDbConnected: false,
+    categorias: categoriasAtividades,
     setIsApiOnline: () => {},
     setIsDbConnected: () => {},
 });
@@ -19,6 +23,7 @@ const ApiDisponivelContext = createContext<ApiDisponivelContextType>({
 export function ApiDisponivelProvider({ children }: { children: ReactNode }) {
     const [isApiOnline, setIsApiOnline] = useState(false);
     const [isDbConnected, setIsDbConnected] = useState(false);
+    const [categorias, setCategorias] = useState<Categoria[]>(categoriasAtividades);
 
     useEffect(() => {
         const verificarApi = async () => {
@@ -27,9 +32,29 @@ export function ApiDisponivelProvider({ children }: { children: ReactNode }) {
                 const data = await res.json();
                 setIsApiOnline(res.ok);
                 setIsDbConnected(data.dbStatus === 'connected');
+
+                if (res.ok && data.dbStatus === 'connected') {
+                    const resCategorias = await fetch('http://localhost:8080/echos-java/api/categorias');
+                    if (resCategorias.ok) {
+                        const categoriasData = await resCategorias.json();
+
+                        const categoriasCompletas = categoriasData.map((catApi: Categoria) => {
+                            const categoriaLocal = categoriasAtividades.find(cat => cat.nome === catApi.nome);
+                            return {
+                                ...catApi,
+                                impactoGlobal: categoriaLocal?.impactoGlobal || 'Impacto não disponível',
+                                dicas: categoriaLocal?.dicas || ['Sem dicas disponíveis'],
+                            };
+                        });
+                        setCategorias(categoriasCompletas);
+                        return;
+                    }
+                }
+                setCategorias(categoriasAtividades);
             } catch {
                 setIsApiOnline(false);
                 setIsDbConnected(false);
+                setCategorias(categoriasAtividades);
             }
         };
 
@@ -37,7 +62,9 @@ export function ApiDisponivelProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <ApiDisponivelContext.Provider value={{ isApiOnline, isDbConnected, setIsApiOnline, setIsDbConnected }}>
+        <ApiDisponivelContext.Provider
+            value={{ isApiOnline, isDbConnected, categorias, setIsApiOnline, setIsDbConnected }}
+        >
             {children}
         </ApiDisponivelContext.Provider>
     );

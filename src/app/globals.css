@@ -29,6 +29,16 @@
     background-image: url('../assets/fundo-equipe.jpeg');
     @apply bg-cover bg-center bg-no-repeat min-h-screen;
   }
+
+  .bg-img-categorias {
+    background-image: url('../assets/fundo-categorias.jpeg');
+    @apply bg-cover bg-center bg-no-repeat min-h-screen;
+  }
+
+  .bg-img-categoriaid {
+    background-image: url('../assets/fundo-categoriaid.jpeg');
+    @apply bg-cover bg-center bg-no-repeat min-h-screen;
+  }
 }
 
 @layer components {
