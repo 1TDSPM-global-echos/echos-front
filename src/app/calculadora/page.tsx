@@ -21,16 +21,33 @@ export default function CalculadoraPage() {
 
     const avancarEtapa = async () => {
         if (etapaAtual === etapas.length - 2) {
-            const totalLocal = categorias.reduce((total, categoria) => {
-                const fatorSimulado = 2;
-                return total + dados[categoria.nomeCateg] * fatorSimulado;
-            }, 0);
-            setResultado(totalLocal.toFixed(2));
+            try {
+                const response = await fetch('http://localhost:8080/echos-java/api/calcular', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(
+                        categorias.map((categoria) => ({
+                            nomeCategoria: categoria.nomeCateg,
+                            quantidade: dados[categoria.nomeCateg],
+                        }))
+                    ),
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    setResultado(data.pegadaTotal);
+                } else {
+                    console.error("Erro ao calcular a pegada de carbono.");
+                }
+            } catch (error) {
+                console.error("Erro ao se conectar com a API:", error);
+            }
         }
         if (etapaAtual < etapas.length - 1) {
             setEtapaAtual(etapaAtual + 1);
         }
     };
+    
 
     const voltarEtapa = () => {
         if (etapaAtual > 0) {
@@ -51,7 +68,9 @@ export default function CalculadoraPage() {
             return (
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-corTurquesa mb-6">O que é pegada de carbono?</h2>
-                    <p className="mb-6">Use nossa calculadora para descobrir sua pegada de carbono.</p>
+                    <p className="mb-6">
+                        Use nossa calculadora para descobrir sua pegada de carbono. Informe os consumos nas categorias a seguir.
+                    </p>
                     <button onClick={avancarEtapa} className="botao-secundario">
                         Iniciar Calculadora
                     </button>
@@ -67,14 +86,16 @@ export default function CalculadoraPage() {
             );
         } else {
             const categoria = etapas[etapaAtual];
+            const categoriaInfo = categorias.find((cat) => cat.nomeCateg === categoria);
             return (
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-corCinza mb-4">Consumo de {categoria}</h2>
+                    <p className="text-sm text-gray-500 mb-4">{categoriaInfo?.descCateg || "Descreva seu consumo nesta categoria."}</p>
                     <input
                         type="number"
                         name={categoria}
-                        placeholder={`Consumo de ${categoria}`}
-                        value={dados[categoria]}
+                        placeholder={`Insira o consumo em ${categoriaInfo?.unidade || "unidades"}`}
+                        value={dados[categoria] || ""}
                         onChange={mudancaInput}
                         className="w-full p-2 border border-gray-300 rounded-md mb-4"
                     />
@@ -82,6 +103,8 @@ export default function CalculadoraPage() {
             );
         }
     };
+    
+    
 
     return (
         <main>

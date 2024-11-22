@@ -18,4 +18,5 @@ export type Categoria = {
     descCateg: string;
     impactoGlobal: string;
     dicas: string[];
-}; 
+    unidade: string;
+};
