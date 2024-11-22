@@ -8,26 +8,45 @@ const Projeto = () => {
                     Sobre o Projeto
                 </h1>
             </section>
+
             <section className="relative bg-white py-12 px-6 lg:px-32 text-gray-800 shadow-lg -mt-12 rounded-t-3xl">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-4xl font-bold mb-6">O que é o Echos?</h2>
                     <p className="mb-4 text-lg leading-relaxed">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        O <strong>Echos</strong> é uma iniciativa voltada para
+                        a conscientização ambiental. Criado para ajudar as
+                        pessoas a entenderem e reduzirem o impacto ambiental de
+                        suas atividades diárias, nosso objetivo é oferecer uma
+                        ferramenta prática e educativa para calcular a pegada
+                        de carbono gerada por atividades como transporte,
+                        consumo de energia, viagens e uso de gás.
                     </p>
                     <h2 className="text-3xl font-semibold mt-10 mb-4">
                         Como Funciona?
                     </h2>
                     <p className="mb-4 text-lg leading-relaxed">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        A calculadora de pegada de carbono permite que os
+                        usuários insiram dados específicos sobre suas
+                        atividades. Utilizando fatores de emissão confiáveis,
+                        o sistema estima as emissões de gases de efeito estufa
+                        e oferece uma análise detalhada e personalizada.
                     </p>
                     <p className="mb-4 text-lg leading-relaxed">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum..
+                        Além disso, o Echos disponibiliza informações educativas
+                        sobre o que é a pegada de carbono e maneiras práticas de
+                        reduzir as emissões, incentivando mudanças positivas nos
+                        hábitos de indivíduos e organizações.
                     </p>
                     <h2 className="text-3xl font-semibold mt-10 mb-4">
                         Por que o Echos é Importante?
                     </h2>
                     <p className="text-lg leading-relaxed">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        A conscientização é o primeiro passo para transformar
+                        hábitos e promover um futuro mais sustentável. Ao
+                        entender suas emissões, os usuários podem tomar
+                        decisões mais conscientes e alinhadas com a preservação
+                        do meio ambiente. O Echos oferece um caminho claro para
+                        contribuir na luta contra as mudanças climáticas.
                     </p>
                 </div>
             </section>
