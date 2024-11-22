@@ -16,7 +16,4 @@ export type Categoria = {
     idCateg: number;
     nomeCateg: string;
     descCateg: string;
-    impactoGlobal: string;
-    dicas: string[];
-    unidade: string;
 };

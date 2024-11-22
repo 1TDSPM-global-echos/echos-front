@@ -32,7 +32,7 @@ export default function CalculadoraPage() {
                         }))
                     ),
                 });
-    
+
                 if (response.ok) {
                     const data = await response.json();
                     setResultado(data.pegadaTotal);
@@ -47,7 +47,6 @@ export default function CalculadoraPage() {
             setEtapaAtual(etapaAtual + 1);
         }
     };
-    
 
     const voltarEtapa = () => {
         if (etapaAtual > 0) {
@@ -80,7 +79,7 @@ export default function CalculadoraPage() {
             return (
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-corTurquesa mb-6">Resultado</h2>
-                    <p>Sua pegada de carbono estimada é: {resultado} kg CO₂ por mês</p>
+                    <p>Sua pegada de carbono estimada é: {resultado ? `${resultado} kg CO₂ por mês` : "Carregando..."}</p>
                     <button onClick={() => setEtapaAtual(0)} className="botao-secundario mt-4">Recomeçar</button>
                 </div>
             );
@@ -94,7 +93,7 @@ export default function CalculadoraPage() {
                     <input
                         type="number"
                         name={categoria}
-                        placeholder={`Insira o consumo em ${categoriaInfo?.unidade || "unidades"}`}
+                        placeholder={`Insira o consumo`}
                         value={dados[categoria] || ""}
                         onChange={mudancaInput}
                         className="w-full p-2 border border-gray-300 rounded-md mb-4"
@@ -103,8 +102,6 @@ export default function CalculadoraPage() {
             );
         }
     };
-    
-    
 
     return (
         <main>

@@ -36,17 +36,8 @@ export function ApiDisponivelProvider({ children }: { children: ReactNode }) {
                 if (data.statusApi === 'online' && data.dbStatus === 'connected') {
                     const resCategorias = await fetch('http://localhost:8080/echos-java/api/categorias');
                     if (resCategorias.ok) {
-                        const categoriasData = await resCategorias.json();
-
-                        const categoriasCompletas = categoriasData.map((catApi: Categoria) => {
-                            const categoriaLocal = categoriasAtividades.find(cat => cat.nomeCateg === catApi.nomeCateg);
-                            return {
-                                ...catApi,
-                                impactoGlobal: categoriaLocal?.impactoGlobal || 'Impacto não disponível',
-                                dicas: categoriaLocal?.dicas || ['Sem dicas disponíveis'],
-                            };
-                        });
-                        setCategorias(categoriasCompletas);
+                        const categoriasData: Categoria[] = await resCategorias.json();
+                        setCategorias(categoriasData);
                         return;
                     }
                 }

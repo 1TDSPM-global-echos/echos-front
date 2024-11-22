@@ -26,18 +26,13 @@ export default function CategoriaDetalhePage() {
                 <div className="relative z-10 text-center text-white px-6 py-12">
                     <h1 className="text-4xl font-bold mb-4 drop-shadow-lg">{categoria.nomeCateg}</h1>
                     <p className="text-lg drop-shadow-md mb-6">{categoria.descCateg}</p>
-                    <p className="text-lg drop-shadow-md">
-                        <strong>Impacto Global:</strong> {categoria.impactoGlobal}
-                    </p>
                 </div>
             </section>
             <section className="max-w-screen-md mx-auto py-10 px-6">
-                <h2 className="text-2xl font-bold mb-4 text-gray-800">Dicas para Reduzir o Impacto</h2>
-                <ul className="list-disc pl-5 space-y-3">
-                    {categoria.dicas.map((dica, index) => (
-                        <li key={index} className="text-gray-700">{dica}</li>
-                    ))}
-                </ul>
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Mais Informações</h2>
+                <p className="text-gray-700">
+                    Para mais detalhes sobre esta categoria, entre em contato ou consulte a seção de atividades.
+                </p>
             </section>
         </main>
     );
