@@ -30,16 +30,16 @@ export function ApiDisponivelProvider({ children }: { children: ReactNode }) {
             try {
                 const res = await fetch('http://localhost:8080/echos-java/api/status');
                 const data = await res.json();
-                setIsApiOnline(res.ok);
+                setIsApiOnline(data.statusApi === 'online');
                 setIsDbConnected(data.dbStatus === 'connected');
 
-                if (res.ok && data.dbStatus === 'connected') {
+                if (data.statusApi === 'online' && data.dbStatus === 'connected') {
                     const resCategorias = await fetch('http://localhost:8080/echos-java/api/categorias');
                     if (resCategorias.ok) {
                         const categoriasData = await resCategorias.json();
 
                         const categoriasCompletas = categoriasData.map((catApi: Categoria) => {
-                            const categoriaLocal = categoriasAtividades.find(cat => cat.nome === catApi.nome);
+                            const categoriaLocal = categoriasAtividades.find(cat => cat.nomeCateg === catApi.nomeCateg);
                             return {
                                 ...catApi,
                                 impactoGlobal: categoriaLocal?.impactoGlobal || 'Impacto não disponível',

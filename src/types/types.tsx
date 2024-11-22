@@ -13,9 +13,9 @@ export interface CarouselProps {
 }
 
 export type Categoria = {
-    id: number;
-    nome: string;
-    descricao: string;
+    idCateg: number;
+    nomeCateg: string;
+    descCateg: string;
     impactoGlobal: string;
     dicas: string[];
 }; 
