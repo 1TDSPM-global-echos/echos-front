@@ -9,11 +9,11 @@ export default function CalculadoraPage() {
     const [dados, setDados] = useState<{ [key: string]: number }>({});
     const [resultado, setResultado] = useState<string | null>(null);
 
-    const etapas = ["Introdução", ...categorias.map((c) => c.nome), "Resultado"];
+    const etapas = ["Introdução", ...categorias.map((c) => c.nomeCateg), "Resultado"];
 
     useEffect(() => {
         const inicialDados = categorias.reduce((acc: { [key: string]: number }, categoria) => {
-            acc[categoria.nome] = 0;
+            acc[categoria.nomeCateg] = 0;
             return acc;
         }, {});
         setDados(inicialDados);
@@ -21,16 +21,33 @@ export default function CalculadoraPage() {
 
     const avancarEtapa = async () => {
         if (etapaAtual === etapas.length - 2) {
-            const totalLocal = categorias.reduce((total, categoria) => {
-                const fatorSimulado = 2;
-                return total + dados[categoria.nome] * fatorSimulado;
-            }, 0);
-            setResultado(totalLocal.toFixed(2));
+            try {
+                const response = await fetch('http://localhost:8080/echos-java/api/calcular', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(
+                        categorias.map((categoria) => ({
+                            nomeCategoria: categoria.nomeCateg,
+                            quantidade: dados[categoria.nomeCateg],
+                        }))
+                    ),
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    setResultado(data.pegadaTotal);
+                } else {
+                    console.error("Erro ao calcular a pegada de carbono.");
+                }
+            } catch (error) {
+                console.error("Erro ao se conectar com a API:", error);
+            }
         }
         if (etapaAtual < etapas.length - 1) {
             setEtapaAtual(etapaAtual + 1);
         }
     };
+    
 
     const voltarEtapa = () => {
         if (etapaAtual > 0) {
@@ -51,7 +68,9 @@ export default function CalculadoraPage() {
             return (
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-corTurquesa mb-6">O que é pegada de carbono?</h2>
-                    <p className="mb-6">Use nossa calculadora para descobrir sua pegada de carbono.</p>
+                    <p className="mb-6">
+                        Use nossa calculadora para descobrir sua pegada de carbono. Informe os consumos nas categorias a seguir.
+                    </p>
                     <button onClick={avancarEtapa} className="botao-secundario">
                         Iniciar Calculadora
                     </button>
@@ -67,14 +86,16 @@ export default function CalculadoraPage() {
             );
         } else {
             const categoria = etapas[etapaAtual];
+            const categoriaInfo = categorias.find((cat) => cat.nomeCateg === categoria);
             return (
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-corCinza mb-4">Consumo de {categoria}</h2>
+                    <p className="text-sm text-gray-500 mb-4">{categoriaInfo?.descCateg || "Descreva seu consumo nesta categoria."}</p>
                     <input
                         type="number"
                         name={categoria}
-                        placeholder={`Consumo de ${categoria}`}
-                        value={dados[categoria]}
+                        placeholder={`Insira o consumo em ${categoriaInfo?.unidade || "unidades"}`}
+                        value={dados[categoria] || ""}
                         onChange={mudancaInput}
                         className="w-full p-2 border border-gray-300 rounded-md mb-4"
                     />
@@ -82,12 +103,30 @@ export default function CalculadoraPage() {
             );
         }
     };
+    
+    
 
     return (
         <main>
             <section className="bg-img-calc secao-img">
                 <div className="w-full max-w-md sm:max-w-lg lg:max-w-3xl mx-auto bg-corCinzaClaro p-6 md:p-10 rounded-lg text-corCinza">
+                    <div className="flex justify-between items-center mb-8 space-x-4 overflow-x-auto">
+                        {etapas.map((etapa, index) => (
+                            <div
+                                key={index}
+                                className={`flex-1 border-t-2 ${index <= etapaAtual ? 'border-corTurquesa' : 'border-gray-300'}`}
+                            >
+                                <span
+                                    className={`block text-center text-sm ${index === etapaAtual ? 'text-corTurquesa font-semibold' : 'text-gray-400'}`}
+                                >
+                                    {etapa}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
                     {renderEtapa()}
+
                     <div className="flex justify-between mt-8">
                         {etapaAtual > 0 && (
                             <button onClick={voltarEtapa} className="botao-secundario">
