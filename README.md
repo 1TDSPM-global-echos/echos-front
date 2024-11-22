@@ -66,7 +66,9 @@ http://localhost:3000.
 
 ---
 
-## 📂 Estrutura de Pastas ##
+
+## 📂 Estrutura de Pastas
+
 src/
 ├── app/
 │   ├── layout.tsx       # Layout global
@@ -83,3 +85,4 @@ src/
 │   └── ...              # Dados locais e estáticos
 ├── types/
 │   └── types.tsx        # Tipagem TypeScript
+
