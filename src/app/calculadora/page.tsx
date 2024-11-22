@@ -9,11 +9,11 @@ export default function CalculadoraPage() {
     const [dados, setDados] = useState<{ [key: string]: number }>({});
     const [resultado, setResultado] = useState<string | null>(null);
 
-    const etapas = ["Introdução", ...categorias.map((c) => c.nome), "Resultado"];
+    const etapas = ["Introdução", ...categorias.map((c) => c.nomeCateg), "Resultado"];
 
     useEffect(() => {
         const inicialDados = categorias.reduce((acc: { [key: string]: number }, categoria) => {
-            acc[categoria.nome] = 0;
+            acc[categoria.nomeCateg] = 0;
             return acc;
         }, {});
         setDados(inicialDados);
@@ -23,7 +23,7 @@ export default function CalculadoraPage() {
         if (etapaAtual === etapas.length - 2) {
             const totalLocal = categorias.reduce((total, categoria) => {
                 const fatorSimulado = 2;
-                return total + dados[categoria.nome] * fatorSimulado;
+                return total + dados[categoria.nomeCateg] * fatorSimulado;
             }, 0);
             setResultado(totalLocal.toFixed(2));
         }
@@ -87,7 +87,23 @@ export default function CalculadoraPage() {
         <main>
             <section className="bg-img-calc secao-img">
                 <div className="w-full max-w-md sm:max-w-lg lg:max-w-3xl mx-auto bg-corCinzaClaro p-6 md:p-10 rounded-lg text-corCinza">
+                    <div className="flex justify-between items-center mb-8 space-x-4 overflow-x-auto">
+                        {etapas.map((etapa, index) => (
+                            <div
+                                key={index}
+                                className={`flex-1 border-t-2 ${index <= etapaAtual ? 'border-corTurquesa' : 'border-gray-300'}`}
+                            >
+                                <span
+                                    className={`block text-center text-sm ${index === etapaAtual ? 'text-corTurquesa font-semibold' : 'text-gray-400'}`}
+                                >
+                                    {etapa}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
                     {renderEtapa()}
+
                     <div className="flex justify-between mt-8">
                         {etapaAtual > 0 && (
                             <button onClick={voltarEtapa} className="botao-secundario">
